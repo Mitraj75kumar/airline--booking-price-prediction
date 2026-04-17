@@ -105,6 +105,42 @@ git push origin main
 
 ## Deployment Options
 
+### Option 0: FastAPI REST Deployment (Recommended Alternate Method)
+
+This method deploys the model as a production API.
+
+**Files used:**
+- `train_api_model.py`
+- `app_fastapi.py`
+- `Procfile`
+
+**Steps:**
+```bash
+# 1) Install dependencies
+pip install -r requirements.txt
+
+# 2) Train and save model artifact
+# If your dataset is not in the default Downloads path, set DATA_PATH first.
+set DATA_PATH=C:\path\to\customer_booking.xlsx
+python train_api_model.py
+
+# 3) Start API server
+uvicorn app_fastapi:app --host 0.0.0.0 --port 8000
+```
+
+**Test endpoints:**
+```bash
+# Health check
+curl http://127.0.0.1:8000/health
+
+# Prediction
+curl -X POST http://127.0.0.1:8000/predict ^
+    -H "Content-Type: application/json" ^
+    -d "{\"purchase_lead\":45,\"length_of_stay\":5,\"flight_hour\":14,\"wants_extra_baggage\":1,\"wants_preferred_seat\":0,\"wants_in_flight_meals\":1,\"sales_channel\":\"Internet\",\"trip_type\":\"RoundTrip\",\"flight_day\":\"Monday\",\"route\":\"AKLKUL\",\"booking_origin\":\"New Zealand\",\"Seat class\":\"Economy\",\"Flight number\":1234,\"num_passengers\":1,\"flight_duration_planned\":8.5,\"booking_complete\":1,\"flight duration actual\":8.7}"
+```
+
+For PaaS deployment (Render/Railway/Heroku), use `Procfile` and the same start command.
+
 ### Option 1: Local Deployment
 
 **Requirements:**
