@@ -1,0 +1,17 @@
+import numpy as np
+var = np.array([1,2,3,4,5])
+print("Min",np.min(var) , np.argmin(var))
+print("Max", np.max(var), np.argmax(var))
+print("Square :",np.sqrt(var))
+print("Value of Sin :",np.sin(var))
+print("Value of Cos :", np.cos(var))
+print("Comsum :",np.cumsum(var))
+
+print()
+print(np.min(var,axis=1))
+print()
+print(np.min(var,axis=0))
+print()
+print(np.max(var,axis=1))
+print()
+print(np.max(var,axis=0))

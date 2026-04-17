@@ -1,0 +1,12 @@
+import numpy as np
+var = np.array ([1,2,3,4,5])
+print(var)
+print()
+print(f"Addition of Numpy array {3} :",np.add(var,3))
+var2= np.array([11,22,33,44,55])
+Add= np.add(var,var2)
+print(var)
+print()
+print(var2)
+print()
+print(f"Add of two numpy array {var}  and {var2} is :",Add)
